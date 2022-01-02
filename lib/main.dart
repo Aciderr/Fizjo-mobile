@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:fizjo/providers/current-exercise.provider.dart';
 import 'package:fizjo/providers/current-notification.provider.dart';
+import 'package:fizjo/providers/current-user.provider.dart';
 import 'package:fizjo/providers/exercises.provider.dart';
 import 'package:fizjo/providers/notifications.provider.dart';
+import 'package:fizjo/screens/more.screen.dart';
 import 'package:fizjo/widgets/bottom_navigation.widget.dart';
 import 'package:fizjo/screens/exercises.screen.dart';
 import 'package:fizjo/screens/notifications.screen.dart';
@@ -20,10 +24,9 @@ Future<void> main() async {
   Hive
     ..initFlutter()
     ..registerAdapter(NotificationConfigAdapter());
-
+  await Firebase.initializeApp();
   WidgetsFlutterBinding.ensureInitialized();
   configureLocalNotificationsInstance();
-
   runApp(
       MultiProvider(
         providers: [
@@ -31,6 +34,7 @@ Future<void> main() async {
           ChangeNotifierProvider(create: (_) => NotificationsProvider()),
           ChangeNotifierProvider(create: (_) => ExercisesProvider()),
           ChangeNotifierProvider(create: (_) => CurrentNotificationProvider()),
+          ChangeNotifierProvider(create: (_) => CurrentUserProvider()),
         ],
         child: const MyApp(),
       ));
@@ -52,6 +56,11 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     mapOfTabPages[0] = const ExercisesScreen();
     mapOfTabPages[1] = const NotificationsScreen();
+    mapOfTabPages[2] = const MoreScreen();
+
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      Provider.of<CurrentUserProvider>(context, listen: false).loadUserData();
+    });
   }
 
   void onTabChange(int index) {

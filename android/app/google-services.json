@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "964878502977",
+    "project_id": "minutesforspine",
+    "storage_bucket": "minutesforspine.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964878502977:android:0e52b921488b9c6bfb8ac0",
+        "android_client_info": {
+          "package_name": "pl.fizjo.fizjo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964878502977-q2sjidskoqvqk78p48bn7oopgdlfbi8p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pl.fizjo.fizjo",
+            "certificate_hash": "d522cde84d869777765d31d72a5db35b73687d06"
+          }
+        },
+        {
+          "client_id": "964878502977-8cm4ra1ff6sd4nv29acpbkekm9gkuceu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwbHrjpW3Juc9drf38zJ52-RSVRSAKFQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964878502977-8cm4ra1ff6sd4nv29acpbkekm9gkuceu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

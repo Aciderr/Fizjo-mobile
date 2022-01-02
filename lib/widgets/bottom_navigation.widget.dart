@@ -29,6 +29,10 @@ class _BottomNavigationState extends State<BottomNavigationWidget> {
           icon: Icon(Icons.notifications_none_outlined),
           label: 'Powiadomienia',
         ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.dehaze_outlined),
+        //   label: 'Więcej',
+        // ),
       ],
       currentIndex: _selectedIndex,
       selectedItemColor: Theme.of(context).primaryColor,
