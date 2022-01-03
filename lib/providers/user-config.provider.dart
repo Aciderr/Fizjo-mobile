@@ -15,7 +15,7 @@ class UserConfigProvider extends ChangeNotifier {
       return Future.value(userConfig);
     }
 
-    dynamic userConfigResponse = await UserConfigApi.fetchUserConfig();
+    dynamic userConfigResponse = await UserConfigApi.fetchUserConfig('token 1x2c3v');
     _setUserConfig(userConfigResponse);
     return userConfigResponse;
   }
