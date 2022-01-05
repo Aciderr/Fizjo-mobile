@@ -43,7 +43,7 @@ class _NotificationPickerState extends State<NotificationPickerWidget> {
     var notificationsProvider = Provider.of<NotificationsProvider>(context, listen: false);
     var currentNotificationProvider = Provider.of<CurrentNotificationProvider>(context, listen: false);
 
-    var currentDays = currentNotificationProvider.currentDays;
+    var currentDays = currentNotificationProvider.selectCurrentDays();
     if (currentDays.isEmpty) {
       Navigator.of(context).pop();
       return;

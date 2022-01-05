@@ -4,7 +4,11 @@ import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class CurrentUserProvider extends ChangeNotifier {
-  User? user;
+  User? _user;
+
+  User? selectUser() {
+    return _user;
+  }
 
   Future<void> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -17,18 +21,17 @@ class CurrentUserProvider extends ChangeNotifier {
     );
 
     await FirebaseAuth.instance.signInWithCredential(credential);
-    loadUserData();
+    setLoggedInUserDataIfLoggedIn();
   }
 
-  void loadUserData() async {
-    user = FirebaseAuth.instance.currentUser;
+  void setLoggedInUserDataIfLoggedIn() async {
+    _user = FirebaseAuth.instance.currentUser;
 
     // TODO Remove this test.
-    if (user != null) {
-      var token = await user!.getIdToken();
+    if (_user != null) {
+      var token = await _user!.getIdToken();
       UserConfigApi.fetchUserConfig(token);
     }
-
     notifyListeners();
   }
 }

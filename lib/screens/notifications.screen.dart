@@ -73,7 +73,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           Column(
             children: [
               Flexible(
-                child:  ListView.builder(
+                child: ListView.builder(
                 itemCount: notificationsProvider.notificationsConfigs.length,
                 itemBuilder: (context, index) {
                 final notificationsConfig = notificationsProvider.notificationsConfigs[index];
@@ -86,6 +86,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   },
                   background: Container(color: Colors.redAccent),
                   child: ListTile(
+                    key: const Key('notification-entry'),
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -97,6 +98,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                               padding: const EdgeInsets.symmetric(horizontal: 2),
                               child: Text(
                                 day.label,
+                                key: Key('selected_day_${day.label}'),
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: _isDaySelected(day.value, notificationsConfig.days) ? Theme.of(context).primaryColor : Colors.grey,
@@ -129,6 +131,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             bottom: 32,
             right: 32,
             child: FloatingActionButton(
+              key: const Key('add-notification-button'),
               onPressed: () => _showDatePicker(context),
               child: const Icon(
                 Icons.add,

@@ -1,10 +1,14 @@
 import 'package:flutter/widgets.dart';
 
 class CurrentExerciseProvider extends ChangeNotifier {
-  int currentExercise = 1;
+  int _currentExercise = 1;
 
-  void changeCurrentExercise(double index) {
-    currentExercise = index.toInt();
+  int selectCurrentExercise() {
+    return _currentExercise;
+  }
+
+  void setCurrentExercise(double index) {
+    _currentExercise = index.toInt();
     notifyListeners();
   }
 }

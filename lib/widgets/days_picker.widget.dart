@@ -34,13 +34,14 @@ class _DaysPickerState extends State<DaysPickerWidget> {
           height: 30,
           width: 30,
           child: GestureDetector(
+            key: Key('day-picker-${day.label}'),
             onTap: () {
-              currentNotificationProvider.onDayClick(day.value);
+              currentNotificationProvider.toggleDayClick(day.value);
             },
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: currentNotificationProvider.isDayInCurrentDays(day.value) ? Theme.of(context).primaryColor : Colors.transparent,
+                  color: currentNotificationProvider.selectIsDayInCurrentDays(day.value) ? Theme.of(context).primaryColor : Colors.transparent,
                   style: BorderStyle.solid,
                   width: 1.0,
                 ),
@@ -55,7 +56,7 @@ class _DaysPickerState extends State<DaysPickerWidget> {
                       child: Text(
                         day.label,
                         style: TextStyle(
-                            fontWeight: currentNotificationProvider.isDayInCurrentDays(day.value) ? FontWeight.w600 : FontWeight.w400
+                            fontWeight: currentNotificationProvider.selectIsDayInCurrentDays(day.value) ? FontWeight.w600 : FontWeight.w400
                         ),
                       ),
                     ),

@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fizjo/providers/current-exercise.provider.dart';
 import 'package:fizjo/providers/current-notification.provider.dart';
@@ -59,7 +58,7 @@ class _MyAppState extends State<MyApp> {
     mapOfTabPages[2] = const MoreScreen();
 
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      Provider.of<CurrentUserProvider>(context, listen: false).loadUserData();
+      Provider.of<CurrentUserProvider>(context, listen: false).setLoggedInUserDataIfLoggedIn();
     });
   }
 

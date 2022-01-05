@@ -27,7 +27,7 @@ class ExercisesCarouselWidget extends StatelessWidget {
               enableInfiniteScroll: false,
               height: height,
               onPageChanged: (currentPage, reason) {
-                Provider.of<CurrentExerciseProvider>(context, listen: false).changeCurrentExercise(currentPage + 1);
+                Provider.of<CurrentExerciseProvider>(context, listen: false).setCurrentExercise(currentPage + 1);
               }
           ),
           items: exercises.map((exercise) => ExerciseWidget(exercise: exercise)).toList(),

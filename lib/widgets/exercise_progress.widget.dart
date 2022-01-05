@@ -21,7 +21,8 @@ class ExerciseProgressWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8, top: 16),
                     child: Text(
-                      '${currentExerciseProvider.currentExercise} z $exercisesCount',
+                      '${currentExerciseProvider.selectCurrentExercise()} z $exercisesCount',
+                      key: const Key('exercise-progress-counter'),
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         color: AppColors.success
@@ -32,7 +33,7 @@ class ExerciseProgressWidget extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 16, left: 40, right: 40),
                       child: LinearProgressIndicator(
                         minHeight: 4,
-                        value: currentExerciseProvider.currentExercise / exercisesCount,
+                        value: currentExerciseProvider.selectCurrentExercise() / exercisesCount,
                         color: AppColors.success,
                         backgroundColor: AppColors.successBright,
                       )

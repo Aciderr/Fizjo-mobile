@@ -11,7 +11,7 @@ class ExercisesScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: const [
-          ExerciseProgressWidget(),
+          ExerciseProgressWidget(key: Key('exercise-progress-widget'),),
           ExercisesCarouselWidget()
         ],
       ),

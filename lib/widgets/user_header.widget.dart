@@ -8,14 +8,14 @@ class UserHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var currentUserProvider = Provider.of<CurrentUserProvider>(context, listen: true);
-    String image = currentUserProvider.user?.photoURL ?? '';
+    String image = currentUserProvider.selectUser()?.photoURL ?? '';
 
     return Padding(
       child: ListTile(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(currentUserProvider.user?.displayName ?? ''),
+            Text(currentUserProvider.selectUser()?.displayName ?? ''),
             const Padding(
               padding: EdgeInsets.only(top: 4),
               child: Text(

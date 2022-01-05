@@ -1,46 +1,50 @@
 import 'package:flutter/widgets.dart';
 
-class CurrentNotificationProvider extends ChangeNotifier {
-  final List<int> initialDays = [
-    DateTime.monday,
-    DateTime.tuesday,
-    DateTime.wednesday,
-    DateTime.thursday,
-    DateTime.friday
-  ];
+final List<int> initialDays = [
+  DateTime.monday,
+  DateTime.tuesday,
+  DateTime.wednesday,
+  DateTime.thursday,
+  DateTime.friday
+];
 
-  late List<int> currentDays;
+class CurrentNotificationProvider extends ChangeNotifier {
+  late List<int> _currentDays;
 
   CurrentNotificationProvider() {
-    currentDays = [...initialDays];
+    _currentDays = [...initialDays];
   }
 
-  bool isDayInCurrentDays(int day) {
-    return currentDays.contains(day);
+  List<int> selectCurrentDays() {
+    return _currentDays;
   }
 
-  void _addDayToCurrentDays(int day) {
-    if (currentDays.contains(day) == false) {
-      currentDays.add(day);
-    }
-  }
-
-  void _removeDayFromCurrentDays(int day) {
-    if (currentDays.contains(day)) {
-      currentDays.remove(day);
-    }
+  bool selectIsDayInCurrentDays(int day) {
+    return _currentDays.contains(day);
   }
 
   void resetDays() {
-    currentDays = [...initialDays];
+    _currentDays = [...initialDays];
   }
 
-  void onDayClick(int day) {
-    if (isDayInCurrentDays(day)) {
-      _removeDayFromCurrentDays(day);
+  void toggleDayClick(int day) {
+    if (selectIsDayInCurrentDays(day)) {
+      removeDayFromCurrentDays(day);
     } else {
-      _addDayToCurrentDays(day);
+      addDayToCurrentDays(day);
     }
     notifyListeners();
+  }
+
+  void addDayToCurrentDays(int day) {
+    if (_currentDays.contains(day) == false) {
+      _currentDays.add(day);
+    }
+  }
+
+  void removeDayFromCurrentDays(int day) {
+    if (_currentDays.contains(day)) {
+      _currentDays.remove(day);
+    }
   }
 }

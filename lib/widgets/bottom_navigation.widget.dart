@@ -20,6 +20,7 @@ class _BottomNavigationState extends State<BottomNavigationWidget> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      key: const Key('bottom-navigation-bar'),
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.accessibility_new_outlined),
