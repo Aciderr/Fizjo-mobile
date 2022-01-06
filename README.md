@@ -12,3 +12,6 @@ post_install do |installer|
         end
     end
 end
+
+recreate iOS folder:
+flutter create -i swift .
