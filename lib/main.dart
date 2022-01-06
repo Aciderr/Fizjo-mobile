@@ -1,9 +1,4 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:fizjo/providers/current-exercise.provider.dart';
-import 'package:fizjo/providers/current-notification.provider.dart';
 import 'package:fizjo/providers/current-user.provider.dart';
-import 'package:fizjo/providers/exercises.provider.dart';
-import 'package:fizjo/providers/notifications.provider.dart';
 import 'package:fizjo/screens/more.screen.dart';
 import 'package:fizjo/widgets/bottom_navigation.widget.dart';
 import 'package:fizjo/screens/exercises.screen.dart';
@@ -12,32 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 import 'env.dart';
-import 'helpers/notification_permission.dart';
-import 'models/notification.dart';
-
-Future<void> main() async {
-  Hive
-    ..initFlutter()
-    ..registerAdapter(NotificationConfigAdapter());
-  await Firebase.initializeApp();
-  WidgetsFlutterBinding.ensureInitialized();
-  configureLocalNotificationsInstance();
-  runApp(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => CurrentExerciseProvider()),
-          ChangeNotifierProvider(create: (_) => NotificationsProvider()),
-          ChangeNotifierProvider(create: (_) => ExercisesProvider()),
-          ChangeNotifierProvider(create: (_) => CurrentNotificationProvider()),
-          ChangeNotifierProvider(create: (_) => CurrentUserProvider()),
-        ],
-        child: const MyApp(),
-      ));
-}
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);

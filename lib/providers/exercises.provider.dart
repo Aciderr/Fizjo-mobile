@@ -1,6 +1,7 @@
 import 'package:fizjo/models/exercise.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fizjo/services/exercises_api.dart';
+import 'package:get/get.dart';
 
 class ExercisesProvider extends ChangeNotifier {
   List<Exercise> exercises = [];
@@ -15,7 +16,8 @@ class ExercisesProvider extends ChangeNotifier {
       return Future.value(exercises);
     }
 
-    List<Exercise> exercisesResponse = await ExercisesApi.fetchExercises();
+    final ExercisesApi exerciseService = Get.find<ExercisesApi>();
+    List<Exercise> exercisesResponse = await exerciseService.fetchExercises();
     setExercises(exercisesResponse);
     return exercisesResponse;
   }

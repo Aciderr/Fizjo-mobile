@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:fizjo/main.dart' as app;
+import 'package:fizjo/app_runner_tests_context.dart' as app;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -24,14 +24,12 @@ void main() {
       await tester.pumpAndSettle();
 
       var notificationsCount = find.byKey(const Key('notification-entry')).evaluate().length;
-      expect(notificationsCount, 2);
 
       await tester.tap(find.byIcon(Icons.delete).first);
-
       await tester.pumpAndSettle();
 
       var notificationsCountAfterDelete = find.byKey(const Key('notification-entry')).evaluate().length;
-      expect(notificationsCountAfterDelete, 1);
+      expect(notificationsCountAfterDelete, notificationsCount - 1);
     });
   });
 }

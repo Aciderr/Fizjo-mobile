@@ -1,1 +1,1 @@
-cd ../ && flutter test integration_test
+cd ../ && flutter test integration_test/main.dart
