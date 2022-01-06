@@ -8,19 +8,19 @@ class MoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var currentUserProvider = Provider.of<CurrentUserProvider>(context, listen: false);
+    // var currentUserProvider = Provider.of<CurrentUserProvider>(context, listen: false);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const UserHeader(),
+        // const UserHeader(),
         const ListTile(
           title: Text('Dostosowanie ćwiczeń'),
           leading: Icon(Icons.add),
         ),
         ListTile(
           onTap: () async {
-            await currentUserProvider.signInWithGoogle();
+            // await currentUserProvider.signInWithGoogle();
           },
           title: const Text('Zaloguj'),
           leading: const Icon(Icons.add),

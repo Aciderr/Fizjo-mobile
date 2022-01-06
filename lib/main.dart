@@ -1,4 +1,4 @@
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:fizjo/helpers/notification_permission.dart';
 import 'package:fizjo/main.dart';
 import 'package:fizjo/main_app.dart';
@@ -19,7 +19,7 @@ Future<void> main() async {
 
   Get.find<FizjoHive>().initialize();
 
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   WidgetsFlutterBinding.ensureInitialized();
   configureLocalNotificationsInstance();
   runApp(
@@ -29,7 +29,7 @@ Future<void> main() async {
           ChangeNotifierProvider(create: (_) => NotificationsProvider()),
           ChangeNotifierProvider(create: (_) => ExercisesProvider()),
           ChangeNotifierProvider(create: (_) => CurrentNotificationProvider()),
-          ChangeNotifierProvider(create: (_) => CurrentUserProvider()),
+          // ChangeNotifierProvider(create: (_) => CurrentUserProvider()),
         ],
         child: const MyApp(),
       ));

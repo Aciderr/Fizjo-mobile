@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
     mapOfTabPages[2] = const MoreScreen();
 
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      Provider.of<CurrentUserProvider>(context, listen: false).setLoggedInUserDataIfLoggedIn();
+      // Provider.of<CurrentUserProvider>(context, listen: false).setLoggedInUserDataIfLoggedIn();
     });
   }
 
