@@ -1,43 +1,53 @@
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
   final void Function(int) onTabChange;
+  final PageController pageController;
+  final int currentPage;
 
-  const BottomNavigationWidget({Key? key, required this.onTabChange}) : super(key: key);
+  const BottomNavigationWidget({
+    Key? key,
+    required this.onTabChange,
+    required this.pageController,
+    required this.currentPage
+  }) : super(key: key);
 
   @override
   State<BottomNavigationWidget> createState() => _BottomNavigationState();
 }
 
 class _BottomNavigationState extends State<BottomNavigationWidget> {
-  int _selectedIndex = 0;
-
   void onTap(int currentTab) {
-    _selectedIndex = currentTab;
     widget.onTabChange(currentTab);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
+    return BottomNavyBar(
       key: const Key('bottom-navigation-bar'),
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.accessibility_new_outlined),
-          label: 'Ćwiczenia',
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      selectedIndex: widget.currentPage,
+      onItemSelected: (index) {
+        onTap(index);
+        widget.pageController.jumpToPage(index);
+      },
+      items: <BottomNavyBarItem>[
+        BottomNavyBarItem(
+            activeColor: Colors.black,
+            title: const Text('Ćwiczenia'),
+            icon: const Icon(Icons.accessibility_new_outlined)
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.notifications_none_outlined),
-          label: 'Powiadomienia',
+        BottomNavyBarItem(
+            activeColor: Colors.black,
+            title: const FittedBox( fit: BoxFit.scaleDown, child: Text( 'Powiadomienia', ), ),
+            icon: const Icon(Icons.notifications_none_outlined)
         ),
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.dehaze_outlined),
-        //   label: 'Więcej',
+        // BottomNavyBarItem(
+        //     title: const Text('Więcej'),
+        //     icon: const Icon(Icons.dehaze_outlined)
         // ),
       ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Theme.of(context).primaryColor,
-      onTap: onTap,
     );
   }
 }

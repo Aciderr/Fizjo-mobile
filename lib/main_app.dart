@@ -1,3 +1,4 @@
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:fizjo/providers/current-user.provider.dart';
 import 'package:fizjo/screens/more.screen.dart';
 import 'package:fizjo/widgets/bottom_navigation.widget.dart';
@@ -18,25 +19,26 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Widget _selectedPage = const ExercisesScreen();
-  Map<int, Widget> mapOfTabPages = {};
-
   @override
   void initState() {
     super.initState();
-    mapOfTabPages[0] = const ExercisesScreen();
-    mapOfTabPages[1] = const NotificationsScreen();
-    mapOfTabPages[2] = const MoreScreen();
-
+    _pageController = PageController();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       // Provider.of<CurrentUserProvider>(context, listen: false).setLoggedInUserDataIfLoggedIn();
     });
   }
 
   void onTabChange(int index) {
-    setState(() {
-      _selectedPage = mapOfTabPages[index] ?? Container();
-    });
+    _currentIndex = index;
+  }
+
+  int _currentIndex = 0;
+  late PageController _pageController;
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -53,9 +55,25 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             toolbarHeight: 0,
           ),
-          bottomNavigationBar: BottomNavigationWidget(onTabChange: onTabChange),
-          body: _selectedPage
+          bottomNavigationBar: BottomNavigationWidget(
+            onTabChange: onTabChange,
+            pageController: _pageController,
+            currentPage: _currentIndex,
+          ),
+          body: SizedBox.expand(
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() => _currentIndex = index);
+              },
+              children: const <Widget>[
+                ExercisesScreen(),
+                NotificationsScreen(),
+                // const MoreScreen(),
+            ],
+          ),
       ),
+    ),
     );
   }
 }
