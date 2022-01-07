@@ -1,13 +1,9 @@
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:fizjo/providers/current-user.provider.dart';
-import 'package:fizjo/screens/more.screen.dart';
 import 'package:fizjo/widgets/bottom_navigation.widget.dart';
 import 'package:fizjo/screens/exercises.screen.dart';
 import 'package:fizjo/screens/notifications.screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:upgrader/upgrader.dart';
 
 import 'env.dart';

@@ -11,14 +11,13 @@ class ExercisesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<Exercise>> fetchExercises() async {
+  Future<void> fetchExercises() async {
     if (exercises.isNotEmpty) {
-      return Future.value(exercises);
+      return;
     }
 
     final ExercisesApi exerciseService = Get.find<ExercisesApi>();
     List<Exercise> exercisesResponse = await exerciseService.fetchExercises();
     setExercises(exercisesResponse);
-    return exercisesResponse;
   }
 }

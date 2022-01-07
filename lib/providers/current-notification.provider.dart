@@ -9,22 +9,18 @@ final List<int> initialDays = [
 ];
 
 class CurrentNotificationProvider extends ChangeNotifier {
-  late List<int> _currentDays;
+  late List<int> currentDays;
 
   CurrentNotificationProvider() {
-    _currentDays = [...initialDays];
-  }
-
-  List<int> selectCurrentDays() {
-    return _currentDays;
+    currentDays = [...initialDays];
   }
 
   bool selectIsDayInCurrentDays(int day) {
-    return _currentDays.contains(day);
+    return currentDays.contains(day);
   }
 
   void resetDays() {
-    _currentDays = [...initialDays];
+    currentDays = [...initialDays];
   }
 
   void toggleDayClick(int day) {
@@ -37,14 +33,14 @@ class CurrentNotificationProvider extends ChangeNotifier {
   }
 
   void addDayToCurrentDays(int day) {
-    if (_currentDays.contains(day) == false) {
-      _currentDays.add(day);
+    if (currentDays.contains(day) == false) {
+      currentDays.add(day);
     }
   }
 
   void removeDayFromCurrentDays(int day) {
-    if (_currentDays.contains(day)) {
-      _currentDays.remove(day);
+    if (currentDays.contains(day)) {
+      currentDays.remove(day);
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fizjo/models/exercise.dart';
 import 'package:fizjo/providers/current-exercise.provider.dart';
 import 'package:flutter/material.dart';
@@ -41,12 +42,18 @@ class _ExerciseWidgetState extends State<ExerciseWidget> {
                       width: double.infinity,
                       height: 240,
                       alignment: Alignment.center,
-                      child: FadeInImage.assetNetwork(
-                        placeholder: 'assets/images/loader.gif',
-                        image: widget.exercise.pictureUrl,
-                        height: 240,
-                        fit: BoxFit.cover,
-                      )
+                      child: CachedNetworkImage(
+                        imageUrl: widget.exercise.pictureUrl,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => const Icon(Icons.error),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
