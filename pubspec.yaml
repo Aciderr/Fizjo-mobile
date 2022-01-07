@@ -35,6 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   carousel_slider: ^4.0.0
+  upgrader: ^3.12.0
 
 dev_dependencies:
   hive_generator: ^1.1.1

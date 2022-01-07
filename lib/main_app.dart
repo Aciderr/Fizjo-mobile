@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:upgrader/upgrader.dart';
 
 import 'env.dart';
 
@@ -59,20 +60,22 @@ class _MyAppState extends State<MyApp> {
             pageController: _pageController,
             currentPage: _currentIndex,
           ),
-          body: SizedBox.expand(
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: (index) {
-                setState(() => _currentIndex = index);
-              },
-              children: const <Widget>[
-                ExercisesScreen(),
-                NotificationsScreen(),
-                // const MoreScreen(),
-            ],
+          body: UpgradeAlert(
+            child: SizedBox.expand(
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: (index) {
+                  setState(() => _currentIndex = index);
+                },
+                children: const <Widget>[
+                  ExercisesScreen(),
+                  NotificationsScreen(),
+                  // const MoreScreen(),
+              ],
+            ),
           ),
+        ),
       ),
-    ),
     );
   }
 }
