@@ -47,8 +47,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: '5 Minutes for spine',
       theme: ThemeData(
-          primarySwatch: themeColor
-          ,
+          primarySwatch: themeColor,
           fontFamily: 'Lato'
       ),
       home: Scaffold(

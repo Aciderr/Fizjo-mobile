@@ -20,7 +20,7 @@ void main() {
       box.add(notification2);
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text('Powiadomienia'));
+      await tester.tap(find.byIcon(Icons.notifications_none_outlined));
       await tester.pumpAndSettle();
 
       var notificationsCount = find.byKey(const Key('notification-entry')).evaluate().length;
