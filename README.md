@@ -3,6 +3,7 @@ https://app.quicktype.io
 
 <h4>To install pods don't forget about arch:</h4>
 arch -x86_64 pod install
+arch -x86_64 pod update
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|

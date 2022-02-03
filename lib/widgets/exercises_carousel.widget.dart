@@ -1,5 +1,5 @@
 import 'package:fizjo/providers/current-exercise.provider.dart';
-import 'package:fizjo/providers/exercises.provider.dart';
+import 'package:fizjo/providers/selected-exercise-set.provider.dart';
 import 'package:fizjo/widgets/exercise.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -13,20 +13,13 @@ class ExercisesCarouselWidget extends StatefulWidget {
 }
 
 class ExerciseCarouselState extends State<ExercisesCarouselWidget> {
-
-  @override
-  void initState() {
-    Provider.of<ExercisesProvider>(context, listen: false).fetchExercises();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height - 160;
 
-    return Consumer<ExercisesProvider>(
-        builder: (_, exercisesProvider, child) {
-          if (exercisesProvider.exercises.isEmpty) {
+    return Consumer<SelectedExerciseSetProvider>(
+        builder: (_, selectedExerciseSetProvider, child) {
+          if (selectedExerciseSetProvider.exerciseSet == null) {
             return Container();
           }
 
@@ -38,7 +31,7 @@ class ExerciseCarouselState extends State<ExercisesCarouselWidget> {
                   Provider.of<CurrentExerciseProvider>(context, listen: false).setCurrentExercise(currentPage + 1);
                 }
             ),
-            items: exercisesProvider.exercises.map((exercise) => ExerciseWidget(exercise: exercise)).toList(),
+            items: selectedExerciseSetProvider.exerciseSet?.exercises.map((exercise) => ExerciseWidget(exercise: exercise)).toList(),
           );
     });
   }

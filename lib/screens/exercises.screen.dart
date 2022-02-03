@@ -1,4 +1,5 @@
 import 'package:fizjo/providers/current-exercise.provider.dart';
+import 'package:fizjo/widgets/exercise-selector.widget.dart';
 import 'package:fizjo/widgets/exercise_progress.widget.dart';
 import 'package:fizjo/widgets/exercises_carousel.widget.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: const [
+          ExerciseSelectorWidget(),
           ExerciseProgressWidget(key: Key('exercise-progress-widget'),),
           ExercisesCarouselWidget()
         ],

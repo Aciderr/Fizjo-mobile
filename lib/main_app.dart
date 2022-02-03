@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:upgrader/upgrader.dart';
-
 import 'env.dart';
 
 class MyApp extends StatefulWidget {
@@ -48,25 +47,25 @@ class _MyAppState extends State<MyApp> {
           fontFamily: 'Lato'
       ),
       home: Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 0,
-          ),
-          bottomNavigationBar: BottomNavigationWidget(
-            onTabChange: onTabChange,
-            pageController: _pageController,
-            currentPage: _currentIndex,
-          ),
-          body: UpgradeAlert(
-            child: SizedBox.expand(
-              child: PageView(
-                controller: _pageController,
-                onPageChanged: (index) {
-                  setState(() => _currentIndex = index);
-                },
-                children: const <Widget>[
-                  ExercisesScreen(),
-                  NotificationsScreen(),
-                  // const MoreScreen(),
+        appBar: AppBar(
+          toolbarHeight: 0,
+        ),
+        bottomNavigationBar: BottomNavigationWidget(
+          onTabChange: onTabChange,
+          pageController: _pageController,
+          currentPage: _currentIndex,
+        ),
+        body: UpgradeAlert(
+          child: SizedBox.expand(
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() => _currentIndex = index);
+              },
+              children: const <Widget>[
+                ExercisesScreen(),
+                NotificationsScreen(),
+                // const MoreScreen(),
               ],
             ),
           ),
