@@ -1,3 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'exercise.g.dart';
+
+@JsonSerializable()
 class Exercise {
   String pictureUrl;
   String volume;
@@ -5,31 +9,15 @@ class Exercise {
   String id;
   String name;
 
-  Exercise({
-    required this.pictureUrl,
-    required this.volume,
-    required this.description,
-    required this.id,
-    required this.name
-  });
+  Exercise(
+    this.pictureUrl,
+    this.volume,
+    this.description,
+    this.id,
+    this.name
+  );
 
-  static Exercise fromJson(Map<String, dynamic> json) {
-    return Exercise(
-        pictureUrl: json['pictureUrl'],
-        description: json['description'],
-        volume: json['volume'],
-        id: json['id'],
-        name: json['name']
-    );
-  }
+  factory Exercise.fromJson(Map<String, dynamic> json) => _$ExerciseFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['pictureUrl'] = pictureUrl;
-    data['volume'] = volume;
-    data['description'] = description;
-    data['id'] = id;
-    data['name'] = name;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$ExerciseToJson(this);
 }

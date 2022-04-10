@@ -23,4 +23,5 @@ const MaterialColor themeColor = MaterialColor(
 class AppColors {
   static Color? success = Colors.green[500];
   static Color? successBright = Colors.green[100];
+  static Color? black = const Color.fromRGBO(51, 50, 50, 1);
 }

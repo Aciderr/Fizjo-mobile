@@ -23,16 +23,16 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: const [
           ExerciseSelectorWidget(),
           ExerciseProgressWidget(key: Key('exercise-progress-widget'),),
-          ExercisesCarouselWidget()
+          ExercisesCarouselWidget(),
+          SizedBox(height: 16,)
         ],
       ),
-      padding: const EdgeInsets.only(bottom: 16),
     );
   }
 }

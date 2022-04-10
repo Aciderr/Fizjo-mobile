@@ -15,26 +15,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final _pages = [
+    Container(),
+    const ExercisesScreen(),
+    const NotificationsScreen()
+  ];
+  int _currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       // Provider.of<CurrentUserProvider>(context, listen: false).setLoggedInUserDataIfLoggedIn();
     });
   }
 
   void onTabChange(int index) {
-    _currentIndex = index;
-  }
-
-  int _currentIndex = 0;
-  late PageController _pageController;
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
+    setState(() {
+      _currentIndex = index;
+    });
   }
 
   @override
@@ -52,22 +51,11 @@ class _MyAppState extends State<MyApp> {
         ),
         bottomNavigationBar: BottomNavigationWidget(
           onTabChange: onTabChange,
-          pageController: _pageController,
           currentPage: _currentIndex,
         ),
         body: UpgradeAlert(
           child: SizedBox.expand(
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: (index) {
-                setState(() => _currentIndex = index);
-              },
-              children: const <Widget>[
-                ExercisesScreen(),
-                NotificationsScreen(),
-                // const MoreScreen(),
-              ],
-            ),
+            child: _pages.elementAt(_currentIndex),
           ),
         ),
       ),

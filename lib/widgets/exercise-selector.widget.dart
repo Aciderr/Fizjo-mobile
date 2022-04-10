@@ -1,4 +1,5 @@
 import 'package:fizjo/models/exercise-set.dart';
+import 'package:fizjo/providers/current-exercise.provider.dart';
 import 'package:fizjo/providers/exercises-sets.provider.dart';
 import 'package:fizjo/providers/selected-exercise-set.provider.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,16 @@ class ExerciseSelectorWidget extends StatefulWidget {
 class _ExerciseSelectorWidgetState extends State<ExerciseSelectorWidget> {
   @override
   void initState() {
-    Provider.of<ExercisesSetsProvider>(context, listen: false).fetchExercisesSets();
+    setDefaultExerciseSet();
     super.initState();
+  }
+
+  setDefaultExerciseSet() async {
+    var exerciseSetId = Provider.of<SelectedExerciseSetProvider>(context, listen: false).selectedExerciseSet;
+    var exercisesSets = await Provider.of<ExercisesSetsProvider>(context, listen: false).fetchExercisesSets();
+    if (exerciseSetId == null) {
+      Provider.of<SelectedExerciseSetProvider>(context, listen: false).setExercisesSets(exercisesSets[0].id);
+    }
   }
 
   @override
@@ -28,33 +37,26 @@ class _ExerciseSelectorWidgetState extends State<ExerciseSelectorWidget> {
         Consumer<ExercisesSetsProvider>(
           builder: (_, exercisesSetsProvider, child) {
             var exerciseSetId = Provider.of<SelectedExerciseSetProvider>(context).selectedExerciseSet;
-
             if (exercisesSetsProvider.exercisesSets.isEmpty) {
               return Container();
             }
 
-            if (exerciseSetId == null) {
-              Provider.of<SelectedExerciseSetProvider>(context, listen: false).setExercisesSets(exercisesSetsProvider.exercisesSets[0].id);
-            }
-
             return DropdownButton<String>(
-              value: exerciseSetId ?? exercisesSetsProvider.exercisesSets[0].id,
-              elevation: 16,
-              style: const TextStyle(color: Colors.black),
-              underline: Container(
-                height: 2,
-                color: Colors.black,
-              ),
+              key: const Key('exercise-set-dropdown'),
+              value: exerciseSetId,
+              underline: Container(),
               onChanged: (String? newValue) {
                 if (newValue == null ){
                   return;
                 }
                 Provider.of<SelectedExerciseSetProvider>(context, listen: false).setExercisesSets(newValue);
+                Provider.of<CurrentExerciseProvider>(context, listen: false).setCurrentExercise(1);
               },
               items: exercisesSetsProvider.exercisesSets.map<DropdownMenuItem<String>>((ExerciseSet exerciseSet) {
                 return DropdownMenuItem<String>(
                   value: exerciseSet.id,
                   child: Text(exerciseSet.name),
+                  key: Key('exercise-set-${exerciseSet.name}'),
                 );
               }).toList(),
             );

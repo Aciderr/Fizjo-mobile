@@ -29,7 +29,7 @@ dependencies:
   firebase_auth: ^3.3.4
   firebase_core: ^1.10.6
   get: ^4.6.1
-  bottom_navy_bar: ^6.0.0
+  flutter_svg: ^1.0.3
   screenshot: ^1.2.3
 
   # The following adds the Cupertino Icons font to your application.
@@ -38,6 +38,7 @@ dependencies:
   carousel_slider: ^4.0.0
   upgrader: ^3.12.0
   cached_network_image: ^3.2.0
+  json_serializable: ^6.1.4
 
 dev_dependencies:
   hive_generator: ^1.1.1
@@ -81,6 +82,9 @@ flutter:
 
   assets:
     - assets/images/loader.gif
+    - assets/icons/calendar.svg
+    - assets/icons/exercise.svg
+    - assets/icons/time.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -104,3 +108,6 @@ flutter:
 
 # Generowanie ikonki:
 # flutter pub pub run flutter_launcher_icons:main
+
+# Build models
+# flutter pub run build_runner build

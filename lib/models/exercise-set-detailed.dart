@@ -1,29 +1,20 @@
 import 'package:fizjo/models/exercise.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'exercise-set-detailed.g.dart';
 
+@JsonSerializable()
 class ExerciseSetDetailed {
   String id;
   String name;
   List<Exercise> exercises;
 
-  ExerciseSetDetailed({
-    required this.id,
-    required this.name,
-    required this.exercises
-  });
+  ExerciseSetDetailed(
+    this.id,
+    this.name,
+    this.exercises
+  );
 
-  static ExerciseSetDetailed fromJson(Map<String, dynamic> json) {
-    return ExerciseSetDetailed(
-        id: json['id'],
-        name: json['name'],
-        exercises: (json['exercises'] as List<dynamic>).map((e) => Exercise.fromJson(e)).toList(),
-    );
-  }
+  factory ExerciseSetDetailed.fromJson(Map<String, dynamic> json) => _$ExerciseSetDetailedFromJson(json);
 
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = <String, dynamic>{};
-  //   data['id'] = id;
-  //   data['name'] = name;
-  //   data['exercises'] = exercises;
-  //   return data;
-  // }
+  Map<String, dynamic> toJson() => _$ExerciseSetDetailedToJson(this);
 }

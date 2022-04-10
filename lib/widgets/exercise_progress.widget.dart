@@ -1,6 +1,6 @@
 import 'package:fizjo/env.dart';
 import 'package:fizjo/providers/current-exercise.provider.dart';
-import 'package:fizjo/providers/exercises.provider.dart';
+import 'package:fizjo/providers/selected-exercise-set.provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,11 +10,14 @@ class ExerciseProgressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ExercisesProvider>(
-      builder: (_, exercisesProvider, child) {
-        int exercisesCount = exercisesProvider.exercises.length;
+    return Consumer<SelectedExerciseSetProvider>(
+      builder: (_, selectedExerciseSetProvider, child) {
+        int? exercisesCount = selectedExerciseSetProvider.exerciseSet?.exercises.length;
+        if (exercisesCount == null || exercisesCount == 0) {
+          return Container();
+        }
 
-        return exercisesCount > 0 ? Consumer<CurrentExerciseProvider>(
+        return Consumer<CurrentExerciseProvider>(
           builder: (_, currentExerciseProvider, child) {
             return Column(
                 children: [
@@ -40,7 +43,7 @@ class ExerciseProgressWidget extends StatelessWidget {
                   ),
             ]);
           }
-        ) : Container();
+        );
       },
     );
   }

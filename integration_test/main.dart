@@ -1,13 +1,16 @@
 import 'package:integration_test/integration_test.dart';
-import 'min_8_add_notification.dart' as min8;
-import 'min_3_exercises_carousel.dart' as min3;
-import 'min_5_progress_bar.dart' as min5;
-import 'min_7_notifications_list.dart' as min7;
+
+import 'add_notification.dart' as add_notification;
+import 'exercises_carousel.dart' as exercises_carousel;
+import 'progress_bar.dart' as progress_bar;
+import 'notifications_list.dart' as notifications_list;
+import 'exercise_selector.dart' as exercise_selector;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  min8.main();
-  min3.main();
-  min5.main();
-  min7.main();
+  add_notification.main();
+  exercises_carousel.main();
+  progress_bar.main();
+  notifications_list.main();
+  exercise_selector.main();
 }
