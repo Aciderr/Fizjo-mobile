@@ -1,3 +1,4 @@
+import 'package:fizjo/screens/categories.screen.dart';
 import 'package:fizjo/widgets/bottom_navigation.widget.dart';
 import 'package:fizjo/screens/exercises.screen.dart';
 import 'package:fizjo/screens/notifications.screen.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _pages = [
     Container(),
-    const ExercisesScreen(),
+    const CategoriesScreen(),
     const NotificationsScreen()
   ];
   int _currentIndex = 0;
