@@ -1,9 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fizjo/screens/categories.screen.dart';
+import 'package:fizjo/screens/login.screen.dart';
 import 'package:fizjo/widgets/bottom_navigation.widget.dart';
-import 'package:fizjo/screens/exercises.screen.dart';
 import 'package:fizjo/screens/notifications.screen.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:upgrader/upgrader.dart';
 import 'env.dart';
@@ -29,6 +28,13 @@ class _MyAppState extends State<MyApp> {
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       // Provider.of<CurrentUserProvider>(context, listen: false).setLoggedInUserDataIfLoggedIn();
     });
+
+    FirebaseAuth.instance.userChanges().listen((event) {
+      print('user' + event.toString());
+    });
+    FirebaseAuth.instance.idTokenChanges().listen((event) {
+      print("token" + event.toString());
+    });
   }
 
   void onTabChange(int index) {
@@ -42,23 +48,27 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: '5 Minutes for spine',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 0,
+          ),
+          bottomNavigationBar: BottomNavigationWidget(
+            onTabChange: onTabChange,
+            currentPage: _currentIndex,
+          ),
+          body: UpgradeAlert(
+            child: SizedBox.expand(
+              child: _pages.elementAt(_currentIndex),
+            ),
+          ),
+        ),
+        '/login': (context) => const LoginScreen()
+      },
       theme: ThemeData(
           primarySwatch: themeColor,
           fontFamily: 'Lato'
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 0,
-        ),
-        bottomNavigationBar: BottomNavigationWidget(
-          onTabChange: onTabChange,
-          currentPage: _currentIndex,
-        ),
-        body: UpgradeAlert(
-          child: SizedBox.expand(
-            child: _pages.elementAt(_currentIndex),
-          ),
-        ),
       ),
     );
   }
