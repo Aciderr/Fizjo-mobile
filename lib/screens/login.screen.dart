@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fizjo/providers/exercises.provider.dart';
+import 'package:fizjo/services/exercises_api.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -70,11 +73,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintText: 'Hasło',
                 ),
               ),),
-              ElevatedButton(onPressed: () {
-                FirebaseAuth.instance.userChanges().listen((event) {
-                  print("event" + event.toString());
-                });
-                FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
+              ElevatedButton(onPressed: () async {
+                ExercisesProvider exercisesProvider = Provider.of<ExercisesProvider>(context, listen: false);
+                await exercisesProvider.fetchExercises();
+
+                // FirebaseAuth.instance.userChanges().listen((event) {
+                //   print("event" + event.toString());
+                // });
+                // FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
               }, child: const Text('Zaloguj'))
             ],
           ),

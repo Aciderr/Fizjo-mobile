@@ -60,7 +60,6 @@ Future<void> main() async {
   Get.put(MockExercisesSetsApi() as ExercisesSetsApi);
   Get.put(FizjoHive());
 
-  Get.find<FizjoHive>().initialize();
   await Firebase.initializeApp();
   WidgetsFlutterBinding.ensureInitialized();
   configureLocalNotificationsInstance();
