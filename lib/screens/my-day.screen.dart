@@ -1,3 +1,4 @@
+import 'package:fizjo/widgets/header.widget.dart';
 import 'package:fizjo/widgets/permissions.widget.dart';
 
 import 'package:fizjo/providers/current-user.provider.dart';
@@ -23,6 +24,13 @@ class _LandingPageScreenState extends State<MyDayScreen> {
       }
 
       return Column(children: [
+        Header(title: 'Hello!', customLeftWidget: GestureDetector(
+          onTap: () {
+            currentUserProvider.logOut();
+            Navigator.pushNamed(context, '/login');
+          },
+          child: const Icon(Icons.person_outline, color: Colors.black),
+        ),),
         Column(
             children: user.dateTimes.map((dateTime) => Row(children: [
               Text(dateTime.time.toString())

@@ -31,7 +31,8 @@ class _MyAppState extends State<MyApp> {
       },
       theme: ThemeData(
           primarySwatch: themeColor,
-          fontFamily: 'Lato'
+          fontFamily: 'Lato',
+          scaffoldBackgroundColor: Colors.white
       ),
     );
   }

@@ -42,26 +42,7 @@ class _LandingPageScreenState extends State<LandingPageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.white,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Consumer<CurrentUserProvider>(builder: (_, currentExerciseProvider, child) {
-                return GestureDetector(
-                  onTap: () {
-                    currentExerciseProvider.logOut();
-                    Navigator.pushNamed(context, '/login');
-                  },
-                  child: const Icon(Icons.person_outline, color: Colors.black),
-                );
-              }),
-              const Text('5 Minutes for spine', style: TextStyle(color: Colors.black),),
-              Container()
-            ],
-          )
-      ),
+      appBar: AppBar(toolbarHeight: 0, backgroundColor: Colors.transparent,),
       bottomNavigationBar: BottomNavigationWidget(
         onTabChange: onTabChange,
         currentPage: _currentIndex,

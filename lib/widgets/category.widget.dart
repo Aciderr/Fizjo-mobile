@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 class CategoryScreen extends StatefulWidget {
   final String text;
   final String image;
-  final bool isOnlyPremium;
 
   const CategoryScreen({
     Key? key,
     required this.text,
-    required this.image,
-    required this.isOnlyPremium
+    required this.image
   }): super(key: key);
 
   @override
@@ -26,8 +24,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Flexible(child: Text(widget.text, textAlign: TextAlign.center,)),
-              widget.isOnlyPremium ? const Padding(padding: EdgeInsets.only(left: 5), child: Icon(Icons.lock_outline),) : Container()
+              Flexible(child: Text(widget.text, textAlign: TextAlign.center,))
             ],
           )
         ],
