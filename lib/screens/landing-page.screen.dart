@@ -25,7 +25,7 @@ class _LandingPageScreenState extends State<LandingPageScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       final isUserLoggedIn = Provider.of<CurrentUserProvider>(context, listen: false).isUserLoggedIn();
       if (isUserLoggedIn) {
         await Provider.of<CurrentUserProvider>(context, listen: false).fetchUser();

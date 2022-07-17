@@ -15,7 +15,7 @@ class ExercisesScreen extends StatefulWidget {
 class _ExercisesScreenState extends State<ExercisesScreen> {
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<CurrentExerciseProvider>(context, listen: false).setCurrentExercise(1);
     });
     super.initState();
