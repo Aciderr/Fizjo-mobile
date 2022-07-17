@@ -6,18 +6,10 @@ part 'user-config.g.dart';
 class UserConfig {
   String userId;
   List<DateTimes> dateTimes;
-  int createdAt;
-  int updatedAt;
-  int daysInRowExercising;
-  String lastDayOfExercising;
 
   UserConfig(
     this.userId,
     this.dateTimes,
-    this.createdAt,
-    this.updatedAt,
-    this.daysInRowExercising,
-    this.lastDayOfExercising
   );
 
   factory UserConfig.fromJson(Map<String, dynamic> json) => _$UserConfigFromJson(json);

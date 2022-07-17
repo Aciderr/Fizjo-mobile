@@ -15,12 +15,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/login');
-          },
-          child: const Text('redirect'),
-        ),
         const Header(title: 'Kategorie'),
         GridView.count(
           shrinkWrap: true,

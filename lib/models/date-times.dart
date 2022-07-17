@@ -5,7 +5,7 @@ part 'date-times.g.dart';
 class DateTimes {
   String uuid;
   String time;
-  List<int> days;
+  List<String> days;
 
   DateTimes(
     this.uuid,

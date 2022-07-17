@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const apiUrl = 'https://h9u3co8m81.execute-api.eu-central-1.amazonaws.com/prod/';
+const apiUrl = 'https://79wqsrcmz3.execute-api.eu-central-1.amazonaws.com/prod/';
 
 const MaterialColor themeColor = MaterialColor(
   0xFF212121,

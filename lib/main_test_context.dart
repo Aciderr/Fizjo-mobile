@@ -1,5 +1,4 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fizjo/helpers/notification_permission.dart';
 import 'package:fizjo/main_app.dart';
 import 'package:fizjo/models/exercise-set-detailed.dart';
 import 'package:fizjo/models/exercise-set.dart';
@@ -62,7 +61,6 @@ Future<void> main() async {
 
   await Firebase.initializeApp();
   WidgetsFlutterBinding.ensureInitialized();
-  configureLocalNotificationsInstance();
   runApp(
       MultiProvider(
         providers: [

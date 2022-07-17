@@ -1,4 +1,3 @@
-import 'package:fizjo/helpers/notification_permission.dart';
 import 'package:fizjo/models/notification.dart';
 import 'package:fizjo/providers/current-notification.provider.dart';
 import 'package:fizjo/providers/notifications.provider.dart';
@@ -41,15 +40,15 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     var currentNotificationProvider = Provider.of<CurrentNotificationProvider>(context, listen: false);
     currentNotificationProvider.resetDays();
 
-    var permissionsGranted = await isNotificationPermissionGranted();
-    if (!permissionsGranted) {
+    // var permissionsGranted = await isNotificationPermissionGranted();
+    // if (!permissionsGranted) {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(
         duration: Duration(seconds: 2),
         content: Text('Odblokuj powiadomienia aplikacji w ustawieniach telefonu.'),
       ));
       return;
-    }
+    // }
 
     showCupertinoModalPopup(
         context: ctx,

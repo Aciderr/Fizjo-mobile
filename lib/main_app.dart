@@ -1,10 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fizjo/screens/categories.screen.dart';
+import 'package:fizjo/providers/current-user.provider.dart';
+import 'package:fizjo/screens/landing-page.screen.dart';
 import 'package:fizjo/screens/login.screen.dart';
-import 'package:fizjo/widgets/bottom_navigation.widget.dart';
-import 'package:fizjo/screens/notifications.screen.dart';
+import 'package:fizjo/screens/registration.screen.dart';
 import 'package:flutter/material.dart';
-import 'package:upgrader/upgrader.dart';
+import 'package:provider/provider.dart';
 import 'env.dart';
 
 class MyApp extends StatefulWidget {
@@ -15,56 +14,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _pages = [
-    Container(),
-    const CategoriesScreen(),
-    const NotificationsScreen()
-  ];
-  int _currentIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      // Provider.of<CurrentUserProvider>(context, listen: false).setLoggedInUserDataIfLoggedIn();
-    });
-
-    FirebaseAuth.instance.userChanges().listen((event) {
-      print('user' + event.toString());
-    });
-    FirebaseAuth.instance.idTokenChanges().listen((event) {
-      print("token" + event.toString());
-    });
-  }
-
-  void onTabChange(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    String initialRoute() {
+      return Provider.of<CurrentUserProvider>(context).isUserLoggedIn() ? '' : '/login';
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: '5 Minutes for spine',
-      initialRoute: '/',
+      initialRoute: initialRoute(),
       routes: {
-        '/': (context) => Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 0,
-          ),
-          bottomNavigationBar: BottomNavigationWidget(
-            onTabChange: onTabChange,
-            currentPage: _currentIndex,
-          ),
-          body: UpgradeAlert(
-            child: SizedBox.expand(
-              child: _pages.elementAt(_currentIndex),
-            ),
-          ),
-        ),
-        '/login': (context) => const LoginScreen()
+        '/': (context) => const LandingPageScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/registration': (context) => const RegistrationScreen()
       },
       theme: ThemeData(
           primarySwatch: themeColor,

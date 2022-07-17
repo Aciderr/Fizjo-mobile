@@ -1,5 +1,4 @@
 import 'package:fizjo/helpers/id_generator.dart';
-import 'package:fizjo/helpers/notification_permission.dart';
 import 'package:fizjo/models/notification.dart';
 import 'package:fizjo/providers/current-notification.provider.dart';
 import 'package:fizjo/providers/notifications.provider.dart';
@@ -49,10 +48,10 @@ class _NotificationPickerState extends State<NotificationPickerWidget> {
       return;
     }
 
-    var permissionsGranted = await isNotificationPermissionGranted();
-    if (permissionsGranted) {
+    // var permissionsGranted = await isNotificationPermissionGranted();
+    // if (permissionsGranted) {
       notificationsProvider.addNotification(NotificationConfig(time: currentTime, days: currentDays, id: uid()));
-    }
+    // }
 
     Navigator.of(context).pop();
   }

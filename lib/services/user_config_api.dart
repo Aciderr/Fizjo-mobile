@@ -1,12 +1,17 @@
-import 'package:dio/dio.dart';
+import 'package:fizjo/models/user-config.dart';
 import 'package:fizjo/services/http_service.dart';
 import 'package:get/get.dart';
 import '../env.dart';
 
-class UserConfigApi {
-  static Future<dynamic> fetchUserConfig(String token) async {
+class UserApi {
+  static Future<dynamic> fetchUserMe() async {
     var httpService = Get.find<HttpService>().instance;
-    final response = await httpService.get<dynamic>('${apiUrl}users-configs');
-    // return response.data?.map((exerciseJson) => Exercise.fromJson(exerciseJson)).toList() ?? [];
+    final response = await httpService.get<dynamic>('${apiUrl}users/me');
+    return UserConfig.fromJson(response.data);
+  }
+
+  static Future<void> createUserMe() async {
+    var httpService = Get.find<HttpService>().instance;
+    await httpService.post<dynamic>('${apiUrl}users/me');
   }
 }

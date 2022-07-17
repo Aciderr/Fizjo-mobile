@@ -37,6 +37,13 @@
             {
               "client_id": "964878502977-8cm4ra1ff6sd4nv29acpbkekm9gkuceu.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "964878502977-6nn8g1232o1mk9h2dv7a211cidfseti5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "pl.fizjo.fizjo"
+              }
             }
           ]
         }
